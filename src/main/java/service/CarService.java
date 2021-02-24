@@ -1,6 +1,6 @@
 package service;
 
-import UI.ConsoleInput;
+import ui.ConsoleInput;
 import api.service.ICarService;
 import model.Car;
 import api.repository.IRepository;

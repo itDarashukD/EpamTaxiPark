@@ -1,6 +1,6 @@
 package facade;
 
-import UI.ConsoleInput;
+import ui.ConsoleInput;
 import api.ui.IConsolInput;
 import model.Car;
 import repository.CarRepository;
