@@ -11,13 +11,10 @@ import java.util.Map;
 public class CarRepository implements IRepository {
 
     private final Map<Long, Car> carMap = new HashMap<>();
-    private long count = 0;
 
     @Override
     public void add(Car car) {
-        long id = ++count;
-        car.setId(id);
-        carMap.put(id, car);
+        carMap.put(car.getId(), car);
     }
 
 

@@ -17,11 +17,11 @@ public class App {
         //test
         taxiPark.getAll();
 
-        System.out.println(taxiPark.calculateCostTaxiPark());
+        taxiPark.calculateCostTaxiPark();
 
-        System.out.println(taxiPark.findCarBySpeed());
+        taxiPark.findCarBySpeed();
 
-        System.out.println(taxiPark.sortByFuelConsumption());
+        taxiPark.sortByFuelConsumption();
 
 
     }

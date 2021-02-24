@@ -21,7 +21,6 @@ public class ConsoleInput  implements IConsolInput {
 
              speed = Integer.parseInt(reader.readLine());
 
-
         } catch (IOException e) {
 
             log.error("IN consoleInputing()" + e.getMessage());

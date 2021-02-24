@@ -11,15 +11,24 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 public class CarService implements ICarService {
 
     private final Logger log = Logger.getLogger(ConsoleInput.class.getName());
     private final IRepository carRepository;
+    private long count = 0;
 
     public CarService(IRepository carRepository) {
         this.carRepository = carRepository;
     }
 
+    @Override
+    public void add(Car car) {
+        long id = ++count;
+        car.setId(id);
+
+        carRepository.add(car);
+    }
     @Override
     public List<Car> getAll() {
         return carRepository.getAll();
@@ -30,10 +39,7 @@ public class CarService implements ICarService {
         return carRepository.getById(id);
     }
 
-    @Override
-    public void add(Car car) {
-        carRepository.add(car);
-    }
+
 
     @Override
     public void update(Car car) {
