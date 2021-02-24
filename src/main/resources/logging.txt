@@ -1,0 +1,3 @@
+21/02/24 12:21:54 INFO : IN consoleInputing() : reading was started
+21/02/24 12:21:59 INFO : IN consoleInputing() : reading was started
+21/02/24 12:22:00 INFO : IN findCarBySpeed() :  find car was started
