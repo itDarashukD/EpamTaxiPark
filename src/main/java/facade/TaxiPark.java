@@ -61,8 +61,8 @@ public class TaxiPark {
         return carService.findCarBySpeed(minSpeed, maxSpeed);
     }
 
-    public double calculateCostTaxiPark() {
-        return carService.calculateCostTaxiPark();
+    public double calculateCostAllCars() {
+        return carService.calculateCostAllCars();
     }
 
 }

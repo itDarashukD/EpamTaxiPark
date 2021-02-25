@@ -4,7 +4,7 @@ import model.Car;
 
 import java.util.List;
 
-public interface IModelRepository<T > {
+public interface IModelRepository<T> {
 
 
     void add(T t);

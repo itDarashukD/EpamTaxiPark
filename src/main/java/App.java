@@ -17,9 +17,9 @@ public class App {
         //test
         taxiPark.getAll();
 
-        taxiPark.calculateCostTaxiPark();
+        taxiPark.calculateCostAllCars();
 
-        taxiPark.findCarBySpeed();
+        taxiPark.findCarBySpeed() ;
 
         taxiPark.sortByFuelConsumption();
 

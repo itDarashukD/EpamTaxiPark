@@ -2,47 +2,73 @@ package service;
 
 import api.service.ICarService;
 import model.Car;
-import org.junit.Test;
+import org.junit.*;
 import repository.CarRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 
 public class CarServiceTest {
-    CarService carService = new CarService(new CarRepository());
+
+    private final ICarService carService = new CarService(new CarRepository());
+
+
+    @Before()
+    public void setUp() {
+
+        carService.add(new Car("car1", 100.1, 10.1, 100));
+        carService.add(new Car("car2", 200.2, 20.2, 200));
+        carService.add(new Car("car3", 300.3, 30.3, 300));
+        carService.add(new Car("car4", 400.4, 40.4, 400));
+
+    }
+
+    @After
+    public void down(){
+        carService.getAll().forEach(carService::delete);
+    }
 
     @Test
-    public void calculateCostTaxiPark() {
+    public void calculateCostAllCars() {
 
-        List<Car> cars = carService.getAll();
+        double costExpected = 1000.2;
 
-        double sumCost = 0;
+        double actualCost =carService.calculateCostAllCars();
 
-        for (Car eachCar : cars
-        ) {
-            sumCost += eachCar.getCost();
-        }
-        double testCost = new CarService(new CarRepository()).calculateCostTaxiPark();
+        assertEquals(costExpected, actualCost, 1);
 
-        assertEquals(sumCost, testCost, 0.0);
     }
 
     @Test
     public void findCarBySpeed() {
-        int minSpeed = 100;
-        int maxSpeed = 250;
 
-        ArrayList<Car> carList = (ArrayList<Car>) carService.getAll().stream()
-                .filter(x -> x.getSpeed() > minSpeed)
-                .filter(x -> x.getSpeed() < maxSpeed)
-                .collect(Collectors.toList());
+        int minSpeed = 200;
+        int maxSpeed = 300;
 
-        ArrayList<Car> testCarList = (ArrayList<Car>) new CarService(new CarRepository())
-                .findCarBySpeed(100, 250);
+        List<Car> carExpected = new ArrayList<>();
+        carExpected.add(new Car("car2", 200.2, 20.2, 200));
+        carExpected.add(new Car("car3", 300.3, 30.3, 300));
 
-        assertEquals(carList.size(), testCarList.size());
+        List<Car> carActual = carService.findCarBySpeed(minSpeed, maxSpeed);
+
+        assertEquals(carExpected, carActual);
+
+    }
+    @Test
+    public void sortByFuelConsumption() {
+
+        List<Car> carExpected = new ArrayList<>();
+
+        carExpected.add(new Car("car1", 100.1, 10.1, 100));
+        carExpected.add(new Car("car2", 200.2, 20.2, 200));
+        carExpected.add(new Car("car3", 300.3, 30.3, 300));
+        carExpected.add(new Car("car4", 400.4, 40.4, 400));
+
+        List<Car> carActual = carService.sortByFuelConsumption();
+
+        assertEquals(carExpected, carActual);
+
     }
 }

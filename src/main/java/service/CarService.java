@@ -53,7 +53,7 @@ public class CarService implements ICarService {
     }
 
     @Override
-    public double calculateCostTaxiPark() {
+    public double calculateCostAllCars() {
         log.info("IN calculateCostTaxiPark() : calculate was started");
 
         double sumCost = 0;
@@ -70,18 +70,10 @@ public class CarService implements ICarService {
     public List<Car> findCarBySpeed(int minSpeed, int maxSpeed) {
         log.info("IN findCarBySpeed() :  find car was started");
 
-        ArrayList<Car> list = (ArrayList<Car>) carRepository.getAll().stream()
-                .filter(x -> x.getSpeed() > minSpeed)
-                .filter(x -> x.getSpeed() < maxSpeed)
+        return carRepository.getAll().stream()
+                .filter(x -> x.getSpeed() >= minSpeed)
+                .filter(x -> x.getSpeed() <= maxSpeed)
                 .collect(Collectors.toList());
-
-        if (list.size() == 0) {
-
-            log.info("\" There are no cars with suitable characteristics for \" +\n" +
-                    " \"the values you entered \"");
-
-        }
-        return list;
     }
 
     @Override

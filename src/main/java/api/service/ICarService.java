@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ICarService extends IModelService<Car> {
 
-    double calculateCostTaxiPark();
+    double calculateCostAllCars();
 
     List<Car> findCarBySpeed(int minSpeed,int maxSpeed);
 
